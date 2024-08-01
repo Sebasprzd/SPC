@@ -6,7 +6,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        Página de SOLICITUDES
+        aquinoeralomio,bai
+
     </div>
     <telerik:RadButton ID="btnSolicitar" runat="server" Text="Solicitar" OnClick="btnSolicitar_Click" />
 </asp:Content>

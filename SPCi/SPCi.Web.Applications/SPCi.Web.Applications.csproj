@@ -118,6 +118,13 @@
     <Compile Include="Pages\gC\Autorizados\Autorizados.aspx.designer.cs">
       <DependentUpon>Autorizados.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\gC\Registros\Usuario.aspx.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\gC\Registros\Usuario.aspx.designer.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Misc\Prueba.aspx.cs">
       <DependentUpon>Prueba.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -187,6 +194,7 @@
     <Content Include="Pages\gC\Solicitudes\Solicitudes.aspx" />
     <Content Include="Pages\gC\Consultas\Consulta.aspx" />
     <Content Include="Pages\gC\Autorizados\Autorizados.aspx" />
+    <Content Include="Pages\gC\Registros\Usuario.aspx" />
     <Content Include="Pages\Misc\Prueba.aspx" />
     <Content Include="web.config" />
     <Content Include="Shared\MasterPages\RLSiteMenu.Master" />
@@ -233,7 +241,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
