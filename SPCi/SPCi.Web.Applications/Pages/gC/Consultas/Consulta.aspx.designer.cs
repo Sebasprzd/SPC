@@ -7,11 +7,20 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace SPCi.Web.Applications.Pages.Misc
+namespace SPCi.Web.Applications.Pages.gC
 {
 
 
-    public partial class Pruebas
+    public partial class Consulta
     {
+
+        /// <summary>
+        /// Control RadGrid1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid RadGrid1;
     }
 }

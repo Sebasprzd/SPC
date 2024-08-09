@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/MasterPages/RLSiteMenu.Master" AutoEventWireup="true" CodeBehind="Consulta.aspx.cs" Inherits="SPCi.Web.Applications.Pages.Misc.Pruebas" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/MasterPages/RLSiteMenu.Master" AutoEventWireup="true" CodeBehind="Consulta.aspx.cs" Inherits="SPCi.Web.Applications.Pages.gC.Consulta" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <title>Hola</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -14,15 +15,23 @@
     </header>
      <br />
     <hr />
-     <main>
-         <telerik:RadGrid runat="server" CellSpacing="-1" Culture="es-ES" GridLines="Both" >
-             <MasterTableView AutoGenerateColumns="False">
-                
-             </MasterTableView>
-             <telerik> </telerik>
-         </telerik:RadGrid>
-
-     </main>
+        <main>
+            <telerik:RadGrid ID="RadGrid1" runat="server" CellSpacing="-1" Culture="es-ES" GridLines="Both" AutoGenerateColumns="False" OnItemCommand="RadGrid1_ItemCommand">
+                <MasterTableView AutoGenerateColumns="False" DataKeyNames="IxClienteUsuario">
+                    <Columns>
+                        <telerik:GridBoundColumn DataField="IxClienteUsuario" HeaderText="ID Cliente" SortExpression="IxClienteUsuario" UniqueName="IxClienteUsuario" />
+                        <telerik:GridBoundColumn DataField="RazonSocial" HeaderText="Razón Social" SortExpression="RazonSocial" UniqueName="RazonSocial" />
+                        <telerik:GridBoundColumn DataField="FcClienteUsuario" HeaderText="Fecha" SortExpression="FcClienteUsuario" UniqueName="FcClienteUsuario" />
+                        <telerik:GridBoundColumn DataField="Solicitud" HeaderText="Estado" SortExpression="Solicitud" UniqueName="Solicitud" />
+                        <telerik:GridTemplateColumn UniqueName="SelectColumn">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="SelectButton" runat="server" Text="Seleccionar" CommandName="Select" CommandArgument='<%# Eval("IxClienteUsuario") %>'></asp:LinkButton>
+                            </ItemTemplate>
+                        </telerik:GridTemplateColumn>
+                    </Columns>
+                </MasterTableView>
+            </telerik:RadGrid>
+        </main>
  </div>
 
 
