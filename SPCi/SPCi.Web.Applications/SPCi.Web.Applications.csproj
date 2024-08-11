@@ -125,6 +125,13 @@
     <Compile Include="Pages\gC\Registros\Usuario.aspx.designer.cs">
       <DependentUpon>Usuario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\gC\visualizarSolicitud\visualizarSolicitud.aspx.cs">
+      <DependentUpon>visualizarSolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\gC\visualizarSolicitud\visualizarSolicitud.aspx.designer.cs">
+      <DependentUpon>visualizarSolicitud.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Misc\Prueba.aspx.cs">
       <DependentUpon>Prueba.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -195,6 +202,7 @@
     <Content Include="Pages\gC\Consultas\Consulta.aspx" />
     <Content Include="Pages\gC\Autorizados\Autorizados.aspx" />
     <Content Include="Pages\gC\Registros\Usuario.aspx" />
+    <Content Include="Pages\gC\visualizarSolicitud\visualizarSolicitud.aspx" />
     <Content Include="Pages\Misc\Prueba.aspx" />
     <Content Include="web.config" />
     <Content Include="Shared\MasterPages\RLSiteMenu.Master" />

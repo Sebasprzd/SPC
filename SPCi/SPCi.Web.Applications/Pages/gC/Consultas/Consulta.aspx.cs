@@ -83,7 +83,7 @@ namespace SPCi.Web.Applications.Pages.gC
                 string ixClienteUsuario = e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["IxClienteUsuario"].ToString();
 
                 // Redirigir a Pruebas.aspx con IxClienteUsuario como parámetro
-                Response.Redirect("~/Pages/gC/Solicitudes/Solicitudes.aspx?IxClienteUsuario=" + ixClienteUsuario);
+                Response.Redirect("~/Pages/gC/visualizarSolicitud/visualizarSolicitud.aspx?IxClienteUsuario=" + ixClienteUsuario);
             }
         }
     }
