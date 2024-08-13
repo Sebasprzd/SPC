@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.ModelBinding;
 
 namespace SPCi.Web.Public.Shared.MasterPages
 {
@@ -20,3 +21,4 @@ namespace SPCi.Web.Public.Shared.MasterPages
         }
     }
 }
+

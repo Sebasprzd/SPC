@@ -202,6 +202,7 @@
     <Content Include="Pages\gC\Consultas\Consulta.aspx" />
     <Content Include="Pages\gC\Autorizados\Autorizados.aspx" />
     <Content Include="Pages\gC\Registros\Usuario.aspx" />
+    <Content Include="Pages\gC\Solicitudes\styles\style.css" />
     <Content Include="Pages\gC\visualizarSolicitud\visualizarSolicitud.aspx" />
     <Content Include="Pages\Misc\Prueba.aspx" />
     <Content Include="web.config" />
@@ -249,7 +250,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
