@@ -19,21 +19,20 @@ namespace SPCi.Web.Applications.Pages.gC
         {
             if (!IsPostBack)
             {
-                BindGrid();
+                RadGrid1.Rebind(); // Asegura que se dispare el evento OnNeedDataSource
             }
         }
 
-        private void BindGrid()
+        protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
             string connStr = ConfigurationManager.ConnectionStrings["op_SPC"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                // Asegúrate de que el nombre de la tabla y el esquema son correctos
-                string query = @"SELECT IxClienteUsuario, RazonSocial, FcClienteUsuario, IxCUEstado 
-                                 FROM dbo.ClienteUsuario 
-                                 ORDER BY IxClienteUsuario";
+                string query = "AT_SeleccionarDatosSolicitud";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     try
                     {
                         conn.Open();
@@ -42,12 +41,18 @@ namespace SPCi.Web.Applications.Pages.gC
                             DataTable dt = new DataTable();
                             sda.Fill(dt);
 
+                            // Verificar las columnas en el DataTable
+                            foreach (DataColumn column in dt.Columns)
+                            {
+                                System.Diagnostics.Debug.WriteLine("Column: " + column.ColumnName);
+                            }
+
                             // Agregar columna para el estado de la solicitud
                             dt.Columns.Add("Solicitud", typeof(string));
 
                             foreach (DataRow row in dt.Rows)
                             {
-                                int estado = Convert.ToInt32(row["IxCUEstado"]);
+                                int estado = Convert.ToInt32(row["Estado"]);
                                 switch (estado)
                                 {
                                     case 1:
@@ -63,7 +68,6 @@ namespace SPCi.Web.Applications.Pages.gC
                             }
 
                             RadGrid1.DataSource = dt;
-                            RadGrid1.DataBind();
                         }
                     }
                     catch (Exception ex)
@@ -75,7 +79,7 @@ namespace SPCi.Web.Applications.Pages.gC
             }
         }
 
-        protected void RadGrid1_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+        protected void RadGrid1_ItemCommand(object sender, GridCommandEventArgs e)
         {
             if (e.CommandName == "Select")
             {

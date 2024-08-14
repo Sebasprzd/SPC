@@ -6,8 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 
-
- <div style="margin-top: 2% " >
+<div style="margin-top: 2%;" >
     <header >
         <h1>Sociedad Portuaria de Caldera S.A</h1>
         <h3>Solicitudes de empresas pendientes</h3>
@@ -15,23 +14,24 @@
     </header>
      <br />
     <hr />
-        <main>
-            <telerik:RadGrid ID="RadGrid1" runat="server" CellSpacing="-1" Culture="es-ES" GridLines="Both" AutoGenerateColumns="False" OnItemCommand="RadGrid1_ItemCommand">
-                <MasterTableView AutoGenerateColumns="False" DataKeyNames="IxClienteUsuario">
-                    <Columns>
-                        <telerik:GridBoundColumn DataField="IxClienteUsuario" HeaderText="ID Cliente" SortExpression="IxClienteUsuario" UniqueName="IxClienteUsuario" />
-                        <telerik:GridBoundColumn DataField="RazonSocial" HeaderText="Razón Social" SortExpression="RazonSocial" UniqueName="RazonSocial" />
-                        <telerik:GridBoundColumn DataField="FcClienteUsuario" HeaderText="Fecha" SortExpression="FcClienteUsuario" UniqueName="FcClienteUsuario" />
-                        <telerik:GridBoundColumn DataField="Solicitud" HeaderText="Estado" SortExpression="Solicitud" UniqueName="Solicitud" />
-                        <telerik:GridTemplateColumn UniqueName="SelectColumn">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="SelectButton" runat="server" Text="Seleccionar" CommandName="Select" CommandArgument='<%# Eval("IxClienteUsuario") %>'></asp:LinkButton>
-                            </ItemTemplate>
-                        </telerik:GridTemplateColumn>
-                    </Columns>
-                </MasterTableView>
-            </telerik:RadGrid>
-        </main>
+    <main>
+         <telerik:RadGrid ID="RadGrid1" runat="server" PageSize="20" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" OnNeedDataSource="RadGrid1_NeedDataSource" AllowFilteringByColumn="True">
+             <MasterTableView AutoGenerateColumns="False" DataKeyNames="IdSolicitud" AllowRowSelect="True">
+                 <Columns>
+                     <telerik:GridBoundColumn DataField="IdSolicitud" HeaderText="ID Cliente" SortExpression="IdSolicitud" UniqueName="IdSolicitud" />
+                     <telerik:GridBoundColumn DataField="NombreEmpresa" HeaderText="Razón Social" SortExpression="NombreEmpresa" UniqueName="NombreEmpresa" />
+                     <telerik:GridBoundColumn DataField="FechaAutorizacion" HeaderText="Fecha" SortExpression="FechaAutorizacion" UniqueName="FechaAutorizacion" />
+                     <telerik:GridBoundColumn DataField="Solicitud" HeaderText="Estado" SortExpression="Solicitud" UniqueName="Solicitud" />           
+                     <telerik:GridButtonColumn CommandName="Select" Text="Seleccionar" UniqueName="SelectColumn" />
+                 </Columns>
+             </MasterTableView>
+             <ClientSettings AllowColumnsReorder="True" AllowColumnHide="True" AllowDragToGroup="True">
+                 <Selecting AllowRowSelect="True" />
+                 <Scrolling AllowScroll="True" UseStaticHeaders="True" />
+             </ClientSettings>
+         </telerik:RadGrid>
+     </main>
+
  </div>
 
 
