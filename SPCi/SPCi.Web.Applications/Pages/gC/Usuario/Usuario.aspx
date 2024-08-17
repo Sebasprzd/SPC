@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/MasterPages/RLSiteMenu.Master" AutoEventWireup="true" CodeBehind="Usuario.aspx.cs" Inherits="SPCi.Web.Applications.Pages.Misc.Pruebas" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/MasterPages/RLSiteMenu.Master" AutoEventWireup="true" CodeBehind="Usuario.aspx.cs" Inherits="Usuario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 <link href="https://web.spcaldera.com/SPC/Public/Shared/CSS/default.css" rel="stylesheet" />
 </asp:Content>
@@ -12,7 +12,7 @@
         <div style=" width: 80%; max-width: 650px; margin-left: auto; margin-right: auto; margin-top:2% " > 
       <h1  >Sociedad Portuaria de Caldera S.A</h1> 
       <h2>Crear cuenta nueva</h2> 
-     <!--revisar esto-->  <p style=" font: normal 12px "Segoe UI", Arial, sans-serif; background-color: whitesmoke;" />Su cuenta estará relacionada con un correo eletrónico que luego será confirmado enviándole un mensaje<p />
+     <!--revisar esto-->  <p style=" background-color: whitesmoke;" />Su cuenta estará relacionada con un correo eletrónico que luego será confirmado enviándole un mensaje<p />
         <hr />
         
       <div style="  width: 70%; margin: 0 auto; padding-top:2% " >
@@ -56,7 +56,7 @@
               <asp:TextBox ID="txtNumero" runat="server" placeholder="(506) - ___ " style="width: 50%" ></asp:TextBox>
           </div>  
           <br /> 
-           <asp:Button ID="btnSubmit" runat="server" Text="Enviar"  />
+           <asp:Button ID="btnSubmit" runat="server" Text="Enviar" OnClick="btnSubmit_Click" />
       
       </div>
       

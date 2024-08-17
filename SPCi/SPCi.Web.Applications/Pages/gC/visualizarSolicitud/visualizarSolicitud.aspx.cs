@@ -62,11 +62,9 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
                                 RadLabelDireccion.Text = reader["Direccion"].ToString();
                                 RadLabelTelefono.Text = reader["Telefono"].ToString();
                                 RadLabelCorreoSolicitante.Text = reader["CorreoSolicitante"].ToString();
-                                // Revisa si representanteLegal existe en el DataReader
-                                if (reader["RepresentanteLegal"] != DBNull.Value)
-                                {
-                                    // Asigna el valor a un control si es necesario
-                                }
+                                RadLabelRepresentanteLegal.Text = reader["RepresentanteLegal"].ToString();
+                                RadLabelIDRepresentanteLegal.Text = reader["IdCedulaRepresentanteLegal"].ToString();
+                                
                             }
                             else
                             {
@@ -88,5 +86,6 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
                 }
             }
         }
+
     }
 }

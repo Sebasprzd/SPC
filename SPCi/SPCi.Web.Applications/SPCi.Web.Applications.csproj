@@ -125,11 +125,11 @@
     <Compile Include="Pages\gC\Autorizados\Autorizados.aspx.designer.cs">
       <DependentUpon>Autorizados.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\gC\Registros\Usuario.aspx.cs">
+    <Compile Include="Pages\gC\Usuario\Usuario.aspx.cs">
       <DependentUpon>Usuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\gC\Registros\Usuario.aspx.designer.cs">
+    <Compile Include="Pages\gC\Usuario\Usuario.aspx.designer.cs">
       <DependentUpon>Usuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\gC\visualizarSolicitud\visualizarSolicitud.aspx.cs">
@@ -209,7 +209,7 @@
     <Content Include="Pages\gC\Solicitudes\Solicitudes.aspx" />
     <Content Include="Pages\gC\Consultas\Consulta.aspx" />
     <Content Include="Pages\gC\Autorizados\Autorizados.aspx" />
-    <Content Include="Pages\gC\Registros\Usuario.aspx" />
+    <Content Include="Pages\gC\Usuario\Usuario.aspx" />
     <Content Include="Pages\gC\Solicitudes\styles\style.css" />
     <Content Include="Pages\gC\visualizarSolicitud\visualizarSolicitud.aspx" />
     <Content Include="Pages\Misc\Prueba.aspx" />
@@ -258,7 +258,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -40,18 +40,23 @@
                 <div>
                     <asp:Label style="padding-right: 11.58%;" runat="server" Text="Correo Solicitante: " />
                     <telerik:RadLabel style="width: 200px; border: 1px solid #ccc;" ID="RadLabelCorreoSolicitante" runat="server" ></telerik:RadLabel><br />
-                </div>  
-
+                </div>
+                <br />
                 <div>
-                    <div style="display:flex" ></div>
-                    <div></div>
-                    <div></div>
+                    <asp:Label style="padding-right: 8.70%;" runat="server" Text="Representante Legal: " />
+                    <telerik:RadLabel style="width: 200px; border: 1px solid #ccc;" ID="RadLabelRepresentanteLegal" runat="server" ></telerik:RadLabel><br />
                 </div>
-                <div  >
-                    <div style="display:flex" ></div>
-                    <div></div>
-                    <div></div>
+                <br />
+                <div>
+                    <asp:Label style="padding-right: 4.90%;" runat="server" Text="ID Representante Legal:: " />
+                    <telerik:RadLabel style="width: 200px; border: 1px solid #ccc;" ID="RadLabelIDRepresentanteLegal" runat="server" ></telerik:RadLabel><br />
                 </div>
+
+                <br />
+                <br />
+                <asp:Button ID="btnAprobar" runat="server" Text="Enviar" />
+                <asp:Button ID="btnRechazar" runat="server" Text="Rechazar" />
+            
   
            </div>
         </main>
