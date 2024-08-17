@@ -3,36 +3,59 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div style="margin-top: 2%">
-        <header>
-            <h1>Detalles de la Solicitud</h1>
+       <div style="width: 80%; max-width: 650px; margin-left: auto; margin-right: auto; margin-top: 2%;">
+         <header >
+            <h1>Sociedad Portuaria de Caldera S.A</h1>
+            <h3>Solicitudes de empresas pendientes</h3>
+            <img src="../../../Images/logo/logo.png" alt="Logo" style="position: absolute; right: 0; width: 67px; height: auto; top: 0; margin-right:15%; margin-top:-10px " />
         </header>
         <hr />
         <main>
-            <telerik:RadGrid ID="RadGrid2" runat="server" CellSpacing="-1" Culture="es-ES" GridLines="Both" AutoGenerateColumns="False">
-                <MasterTableView AutoGenerateColumns="False" DataKeyNames="IxClienteUsuario">
-                    <Columns>
-                        <telerik:GridBoundColumn DataField="IxClienteUsuario" HeaderText="ID Cliente" SortExpression="IxClienteUsuario" UniqueName="IxClienteUsuario" />
-                        <telerik:GridBoundColumn DataField="CorreoSolicitante" HeaderText="Correo Solicitante" SortExpression="CorreoSolicitante" UniqueName="CorreoSolicitante" />
-                        <telerik:GridBoundColumn DataField="RazonSocial" HeaderText="Razón Social" SortExpression="RazonSocial" UniqueName="RazonSocial" />
-                        <telerik:GridBoundColumn DataField="Identificacion" HeaderText="Identificación" SortExpression="Identificacion" UniqueName="Identificacion" />
-                        <telerik:GridBoundColumn DataField="RepresentanteLegal" HeaderText="Representante Legal" SortExpression="RepresentanteLegal" UniqueName="RepresentanteLegal" />
-                        <telerik:GridBoundColumn DataField="IdCedulaRepresentanteLegal" HeaderText="ID Cédula Representante Legal" SortExpression="IdCedulaRepresentanteLegal" UniqueName="IdCedulaRepresentanteLegal" />
-                        <telerik:GridBoundColumn DataField="CorreoElectronico" HeaderText="Correo Electrónico" SortExpression="CorreoElectronico" UniqueName="CorreoElectronico" />
-                        <telerik:GridBoundColumn DataField="Direccion" HeaderText="Dirección" SortExpression="Direccion" UniqueName="Direccion" />
-                        <telerik:GridBoundColumn DataField="Telefono" HeaderText="Teléfono" SortExpression="Telefono" UniqueName="Telefono" />
-                    </Columns>
-                </MasterTableView>
-            </telerik:RadGrid>
+            <div style="width: 70%; margin: 0 auto; padding-top: 2%;" >
+                <div>
+                    <asp:Label style="margin-top: 10%; padding-right: 21%;" runat="server" Text="ID Cliente:" />
+                    <telerik:RadLabel style="width: 200px; border: 1px solid #ccc;" ID="RadLabelIDCliente" runat="server"></telerik:RadLabel><br /> 
+                </div>
+                <br />
+                <div>
+                    <asp:Label style="padding-right: 17.68%;"  runat="server" Text="Razón Social: " />
+                    <telerik:RadLabel style="width: 200px; border: 1px solid #ccc;" ID="RadLabelRazonSocial" runat="server" ></telerik:RadLabel><br />
+                </div>
+                <br />
+                <div>
+                    <asp:Label style="padding-right: 16.75%;" runat="server" Text= "Identificación: " />
+                    <telerik:RadLabel style="width: 200px; border: 1px solid #ccc;" ID="RadLabelIdentificacion" runat="server" ></telerik:RadLabel><br />
+                </div>
+                <br />
+                <div>
+                     <asp:Label style="padding-right: 21.45%;"  runat="server" Text="Dirección: "/>
+                     <telerik:RadLabel style="width: 200px; border: 1px solid #ccc;" ID="RadLabelDireccion" runat="server" ></telerik:RadLabel><br />
+                </div>
+                <br />
+                <div>
+                    <asp:Label style="padding-right: 22.40%;"  runat="server" Text="Teléfono: "/>
+                    <telerik:RadLabel style="width: 200px; border: 1px solid #ccc;" ID="RadLabelTelefono" runat="server" ></telerik:RadLabel><br />
+                </div>
+                <br />
+                <div>
+                    <asp:Label style="padding-right: 11.58%;" runat="server" Text="Correo Solicitante: " />
+                    <telerik:RadLabel style="width: 200px; border: 1px solid #ccc;" ID="RadLabelCorreoSolicitante" runat="server" ></telerik:RadLabel><br />
+                </div>  
 
-            <br />
-            <br />
-            <asp:Button ID="btnAprobar" runat="server" Text="Aprobar" OnClick="btnAprobar_Click" CssClass="btn btn-success" />
-            <asp:Button ID="btnRechazar" runat="server" Text="Rechazar" OnClick="btnRechazar_Click" CssClass="btn btn-danger" />
-
-
+                <div>
+                    <div style="display:flex" ></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div  >
+                    <div style="display:flex" ></div>
+                    <div></div>
+                    <div></div>
+                </div>
+  
+           </div>
         </main>
-    </div>
+    </div>  
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="FooterContent" runat="server">
 </asp:Content>

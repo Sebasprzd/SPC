@@ -14,24 +14,25 @@
     </header>
      <br />
     <hr />
-    <main>
-         <telerik:RadGrid ID="RadGrid1" runat="server" PageSize="20" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" OnNeedDataSource="RadGrid1_NeedDataSource" AllowFilteringByColumn="True">
-             <MasterTableView AutoGenerateColumns="False" DataKeyNames="IdSolicitud" AllowRowSelect="True">
-                 <Columns>
-                     <telerik:GridBoundColumn DataField="IdSolicitud" HeaderText="ID Cliente" SortExpression="IdSolicitud" UniqueName="IdSolicitud" />
-                     <telerik:GridBoundColumn DataField="NombreEmpresa" HeaderText="Razón Social" SortExpression="NombreEmpresa" UniqueName="NombreEmpresa" />
-                     <telerik:GridBoundColumn DataField="FechaAutorizacion" HeaderText="Fecha" SortExpression="FechaAutorizacion" UniqueName="FechaAutorizacion" />
-                     <telerik:GridBoundColumn DataField="Solicitud" HeaderText="Estado" SortExpression="Solicitud" UniqueName="Solicitud" />           
-                     <telerik:GridButtonColumn CommandName="Select" Text="Seleccionar" UniqueName="SelectColumn" />
-                 </Columns>
-             </MasterTableView>
-             <ClientSettings AllowColumnsReorder="True" AllowColumnHide="True" AllowDragToGroup="True">
-                 <Selecting AllowRowSelect="True" />
-                 <Scrolling AllowScroll="True" UseStaticHeaders="True" />
-             </ClientSettings>
-         </telerik:RadGrid>
-     </main>
+    <main >
+            <telerik:RadGrid ID="RadGrid1" runat="server" PageSize="50" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True"
+        OnNeedDataSource="RadGrid1_NeedDataSource" AllowFilteringByColumn="True" >
+        <MasterTableView AutoGenerateColumns="False" DataKeyNames="IdSolicitud" AllowRowSelect="True">
+            <Columns>
+                <telerik:GridBoundColumn DataField="IdSolicitud" HeaderText="ID Cliente" SortExpression="IdSolicitud" UniqueName="IdSolicitud" />
+                <telerik:GridBoundColumn DataField="NombreEmpresa" HeaderText="Razón Social" SortExpression="NombreEmpresa" UniqueName="NombreEmpresa" />
+                <telerik:GridBoundColumn DataField="FechaAutorizacion" HeaderText="Fecha" SortExpression="FechaAutorizacion" UniqueName="FechaAutorizacion" />
+                <telerik:GridBoundColumn DataField="Solicitud" HeaderText="Estado" SortExpression="Solicitud" UniqueName="Solicitud" />
+                <telerik:GridBoundColumn commanName="Select"  UniqueName ="Select"  > </telerik:GridBoundColumn>
+            </Columns>
+        </MasterTableView>
+        <ClientSettings AllowColumnsReorder="True" AllowColumnHide="True" AllowDragToGroup="True">
+            <Selecting AllowRowSelect="True" />
+            <Scrolling AllowScroll="True" UseStaticHeaders="True" />
+        </ClientSettings>
+    </telerik:RadGrid>
 
+     </main>
  </div>
 
 

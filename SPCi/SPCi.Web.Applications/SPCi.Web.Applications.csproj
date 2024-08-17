@@ -97,6 +97,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\gC\Pantalla1\Pantalla1.aspx.cs">
+      <DependentUpon>Pantalla1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\gC\Pantalla1\Pantalla1.aspx.designer.cs">
+      <DependentUpon>Pantalla1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\gC\Solicitudes\Solicitudes.aspx.cs">
       <DependentUpon>Solicitudes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -198,6 +205,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\logo\logo.png" />
+    <Content Include="Pages\gC\Pantalla1\Pantalla1.aspx" />
     <Content Include="Pages\gC\Solicitudes\Solicitudes.aspx" />
     <Content Include="Pages\gC\Consultas\Consulta.aspx" />
     <Content Include="Pages\gC\Autorizados\Autorizados.aspx" />
@@ -250,7 +258,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -15,30 +15,57 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
     {
 
         /// <summary>
-        /// Control RadGrid2.
+        /// Control RadLabelIDCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid RadGrid2;
+        protected global::Telerik.Web.UI.RadLabel RadLabelIDCliente;
 
         /// <summary>
-        /// Control btnAprobar.
+        /// Control RadLabelRazonSocial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAprobar;
+        protected global::Telerik.Web.UI.RadLabel RadLabelRazonSocial;
 
         /// <summary>
-        /// Control btnRechazar.
+        /// Control RadLabelIdentificacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRechazar;
+        protected global::Telerik.Web.UI.RadLabel RadLabelIdentificacion;
+
+        /// <summary>
+        /// Control RadLabelDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadLabel RadLabelDireccion;
+
+        /// <summary>
+        /// Control RadLabelTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadLabel RadLabelTelefono;
+
+        /// <summary>
+        /// Control RadLabelCorreoSolicitante.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadLabel RadLabelCorreoSolicitante;
     }
 }

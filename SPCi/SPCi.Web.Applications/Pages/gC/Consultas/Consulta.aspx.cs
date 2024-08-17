@@ -41,11 +41,7 @@ namespace SPCi.Web.Applications.Pages.gC
                             DataTable dt = new DataTable();
                             sda.Fill(dt);
 
-                            // Verificar las columnas en el DataTable
-                            foreach (DataColumn column in dt.Columns)
-                            {
-                                System.Diagnostics.Debug.WriteLine("Column: " + column.ColumnName);
-                            }
+                    
 
                             // Agregar columna para el estado de la solicitud
                             dt.Columns.Add("Solicitud", typeof(string));
@@ -79,16 +75,17 @@ namespace SPCi.Web.Applications.Pages.gC
             }
         }
 
-        protected void RadGrid1_ItemCommand(object sender, GridCommandEventArgs e)
+        protected void RadGrid1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (e.CommandName == "Select")
-            {
-                // Obtener el valor de IxClienteUsuario de la fila seleccionada
-                string ixClienteUsuario = e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["IxClienteUsuario"].ToString();
+            // Obtiene el item seleccionado
+            GridDataItem item = RadGrid1.SelectedItems[0] as GridDataItem;
 
-                // Redirigir a Pruebas.aspx con IxClienteUsuario como parámetro
-                Response.Redirect("~/Pages/gC/visualizarSolicitud/visualizarSolicitud.aspx?IxClienteUsuario=" + ixClienteUsuario);
-            }
+            // Obtiene el IdSolicitud desde el DataKeyValues usando DataKeyNames
+            string idSolicitud = item.GetDataKeyValue("IdSolicitud").ToString();
+
+            // Redirige a la página con el IdSolicitud como parámetro
+            Response.Redirect("~/Pages/gC/visualizarSolicitud/visualizarSolicitud.aspx?IxClienteUsuario=" + idSolicitud);
         }
+
     }
 }
