@@ -15,9 +15,14 @@ namespace SPCi.Web.Public.Shared.MasterPages
             Session.Add("Apellido1", "Perez");
             Session.Add("Apellido2", "Arias");
             Session.Add("NombreCorto", "Yenci Perez");
-            Session.Add("IdEntidad", "00001");
+            Session.Add("IdEntidad", "0001");
             Session.Add("DsEntidad", "Una compañía cualquiera");
             Session.Add("IxEntidadTipo", "");
+
+
+            lblNombreCorto.Text = Session["NombreCorto"].ToString();
+
+
         }
     }
 }
