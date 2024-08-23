@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
@@ -14,11 +13,25 @@ namespace SPCi.Web.Applications.Pages.gC.Autorizados
             {
                 // Obtener el IdEntidad desde la sesión del MasterPage
                 string idEntidad = (string)Session["IdEntidad"];
-                // Llamar a BindGrid con el IdEntidad
                 BindGrid(idEntidad);
+                                                                                               //ejemplo de como ser veria la url
+                string ixClienteUsuarioQueryString = Request.QueryString["IxClienteUsuario"];  ///Pages/gC/Autorizados/Autorizados.aspx?IxClienteUsuario=20
+                //sin esto el autorizado no se registra correctamente
+
+                if (!string.IsNullOrEmpty(ixClienteUsuarioQueryString))
+                {
+                    int ixClienteUsuario;
+                    if (int.TryParse(ixClienteUsuarioQueryString, out ixClienteUsuario))
+                    {
+                        ViewState["IxClienteUsuario"] = ixClienteUsuario;
+                    }
+                    else
+                    {
+                        lblAgregar.Text = "ID de cliente no válido en la consulta.";
+                    }
+                }
             }
         }
-
 
         private void BindGrid(string idEntidad = null)
         {
@@ -35,7 +48,6 @@ namespace SPCi.Web.Applications.Pages.gC.Autorizados
                     }
                     else
                     {
-                        // Si no se proporciona IdEntidad, se podría optar por manejar el caso o mostrar un mensaje.
                         cmd.Parameters.AddWithValue("@IdEntidad", DBNull.Value);
                     }
 
@@ -53,7 +65,6 @@ namespace SPCi.Web.Applications.Pages.gC.Autorizados
                     }
                     catch (Exception ex)
                     {
-                        // Manejo de errores
                         throw new ApplicationException("Error al acceder a la base de datos", ex);
                     }
                 }
@@ -64,26 +75,68 @@ namespace SPCi.Web.Applications.Pages.gC.Autorizados
 
 
 
-
-
         protected void btnAgregarAutorizado(object sender, EventArgs e)
         {
             int ixClienteUsuario;
             string cedula = txtCedula.Text.Trim();
 
-            if (int.TryParse(txtIxClienteUsuario.Text.Trim(), out ixClienteUsuario) && !string.IsNullOrEmpty(cedula))
+            // Obtener IxClienteUsuario desde ViewState
+            if (ViewState["IxClienteUsuario"] != null &&
+                int.TryParse(ViewState["IxClienteUsuario"].ToString(), out ixClienteUsuario) &&
+                !string.IsNullOrEmpty(cedula))
             {
-                InsertCuUsuario(ixClienteUsuario, cedula);
-                // Re-bind the Grid to show the updated data
-                BindGrid();
-                lblAgregar.Text = "Usuario agregado exitosamente.";
+                try
+                {
+                    if (verificarUsuarioRepetido(ixClienteUsuario, cedula))
+                    {
+                        lblAgregar.Text = "El usuario ya está autorizado.";
+                    }
+                    else
+                    {
+                        InsertCuUsuario(ixClienteUsuario, cedula);
+                        BindGrid();  // Actualizar la grid
+                        lblAgregar.Text = "Usuario agregado exitosamente.";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lblAgregar.Text = "Error al agregar usuario: " + ex.Message;
+                }
             }
             else
             {
-                // Manejo de error si el ID o la cédula no son válidos
                 lblAgregar.Text = "ID del cliente o cédula inválidos.";
             }
         }
+
+        private bool verificarUsuarioRepetido(int ixClienteUsuario, string cedula)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["op_SPC"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(
+                    @"SELECT COUNT(*) 
+              FROM CUUsuario 
+              WHERE IxClienteUsuario = @IxClienteUsuario AND Cedula = @Cedula", conn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@IxClienteUsuario", ixClienteUsuario);
+                    cmd.Parameters.AddWithValue("@Cedula", cedula);
+
+                    try
+                    {
+                        conn.Open();
+                        int count = (int)cmd.ExecuteScalar();
+                        return count > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ApplicationException("Error al verificar si el usuario ya está autorizado", ex);
+                    }
+                }
+            }
+        }
+
 
         private void InsertCuUsuario(int ixClienteUsuario, string cedula)
         {
@@ -100,29 +153,45 @@ namespace SPCi.Web.Applications.Pages.gC.Autorizados
                     {
                         conn.Open();
                         cmd.ExecuteNonQuery();
+
+                        // Registro en la bitácora
+                        using (SqlCommand cmdBitacora = new SqlCommand("AT_InsCUUsuarioB", conn))
+                        {
+                            cmdBitacora.CommandType = CommandType.StoredProcedure;
+                            cmdBitacora.Parameters.AddWithValue("@IxClienteUsuario", ixClienteUsuario);
+                            cmdBitacora.Parameters.AddWithValue("@IxSession", Session["IxSesion"]);  // Obtener IxSesion desde la sesión
+
+                            cmdBitacora.ExecuteNonQuery();
+                        }
                     }
                     catch (Exception ex)
                     {
-                        // Manejo de errores
                         throw new ApplicationException("Error al ejecutar el procedimiento almacenado", ex);
                     }
                 }
             }
         }
 
+
         protected void btnEliminarAutorizado(object sender, EventArgs e)
         {
             int ixCUUsuario;
             if (int.TryParse(txtIxCUUsuario.Text.Trim(), out ixCUUsuario))
             {
-                DeleteCuUsuario(ixCUUsuario);
-                // Re-bind the Grid to show the updated data
-                BindGrid();
-                lblEliminar.Text = "Usuario eliminado exitosamente.";
+                try
+                {
+                    DeleteCuUsuario(ixCUUsuario);
+                    BindGrid();  // Actualizar 
+
+                    lblEliminar.Text = "Usuario eliminado exitosamente.";
+                }
+                catch (Exception ex)
+                {
+                    lblEliminar.Text = "Error al eliminar usuario: " + ex.Message;
+                }
             }
             else
             {
-                // Manejo de error si el ID no es válido
                 lblEliminar.Text = "ID de usuario inválido.";
             }
         }
@@ -130,6 +199,14 @@ namespace SPCi.Web.Applications.Pages.gC.Autorizados
         private void DeleteCuUsuario(int ixCUUsuario)
         {
             string connStr = ConfigurationManager.ConnectionStrings["op_SPC"].ConnectionString;
+
+            // Verificar si el usuario existe en la tabla CUUsuario
+            if (!verificarUsuarioExistente(ixCUUsuario))
+            {
+                lblEliminar.Text = "El usuario no está en la tabla autorizados.";
+                return;
+            }
+
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 using (SqlCommand cmd = new SqlCommand("AT_DeleteCuUsuario", conn))
@@ -141,15 +218,221 @@ namespace SPCi.Web.Applications.Pages.gC.Autorizados
                     {
                         conn.Open();
                         cmd.ExecuteNonQuery();
+
+                        // Registro en la bitácora
+                        using (SqlCommand cmdBitacora = new SqlCommand("AT_DelCUUsuarioB", conn))
+                        {
+                            cmdBitacora.CommandType = CommandType.StoredProcedure;
+                            cmdBitacora.Parameters.AddWithValue("@IxClienteUsuario", ixCUUsuario);
+                            cmdBitacora.Parameters.AddWithValue("@IxSession", Session["IxSesion"]);  // Obtener IxSesion desde la sesión
+
+                            cmdBitacora.ExecuteNonQuery();
+                        }
                     }
                     catch (Exception ex)
                     {
-                        // Manejo de errores
                         throw new ApplicationException("Error al ejecutar el procedimiento almacenado", ex);
                     }
                 }
             }
         }
+
+        private bool verificarUsuarioExistente(int ixCUUsuario)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["op_SPC"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(
+                    @"SELECT COUNT(*) 
+              FROM CUUsuario 
+              WHERE IxCUUsuario = @IxCUUsuario", conn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@IxCUUsuario", ixCUUsuario);
+
+                    try
+                    {
+                        conn.Open();
+                        int count = (int)cmd.ExecuteScalar();
+                        return count > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ApplicationException("Error al verificar si el usuario existe", ex);
+                    }
+                }
+            }
+        }
+
+
+
+
+
+        //--------------------------------------------------------------------------------------------
+
+
+
+        //Textchenged para buscar la info de los usuarios en la pestaña "Agregar Autorizados"
+
+        protected void txtCedula_TextChanged(object sender, EventArgs e)
+        {
+            string cedula = txtCedula.Text.Trim();
+            if (!string.IsNullOrEmpty(cedula))
+            {
+                try
+                {
+                    DataRow userInfo = GetUserInfoByCedula(cedula);
+                    if (userInfo != null)
+                    {
+                        // Mostrar la información recuperada en los controles
+                        lblNombre.Text = "Nombre: " + userInfo["Nombre"].ToString();
+                        lblPrimerApellido.Text = "Primer Apellido: " + userInfo["PrimerApellido"].ToString();
+                        lblSegundoApellido.Text = "Segundo Apellido: " + userInfo["SegundoApellido"].ToString();
+
+                    }
+                    else
+                    {
+                        // Mostrar mensaje si no se encuentra el usuario
+                        lblNombre.Text = "Nombre: No encontrado";
+                        lblPrimerApellido.Text = "Primer Apellido: No encontrado";
+                        lblSegundoApellido.Text = "Segundo Apellido: No encontrado";
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lblAgregar.Text = "Error al buscar usuario: " + ex.Message;
+                }
+            }
+        }
+
+
+        private DataRow GetUserInfoByCedula(string cedula)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["op_SPC"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(
+                    @"SELECT 
+                vs.IdCedula,
+                vs.Nombre,
+                vs.Apellido1 AS PrimerApellido,
+                vs.Apellido2 AS SegundoApellido
+              FROM 
+                VSesion vs
+              WHERE 
+                vs.IdCedula = @Cedula;", conn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@Cedula", cedula);
+
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            if (dt.Rows.Count > 0)
+                            {
+                                return dt.Rows[0];
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ApplicationException("Error al ejecutar la consulta SQL", ex);
+                    }
+                }
+            }
+            return null;
+        }
+
+
+
+
+
+        //Textchenged para buscar la info de los usuarios en la pestaña "Eliminar Autorizados"
+
+
+        protected void txtIxCUUsuario_TextChanged(object sender, EventArgs e)
+        {
+            string ixCUUsuario = txtIxCUUsuario.Text.Trim();
+            if (!string.IsNullOrEmpty(ixCUUsuario))
+            {
+                try
+                {
+                    DataRow userInfo = GetUserInfoByIxCUUsuario(ixCUUsuario);
+                    if (userInfo != null)
+                    {
+                        lblCedula.Text = "Cédula: " + userInfo["IdCedula"].ToString();
+                        lblNombre.Text = "Nombre: " + userInfo["Nombre"].ToString();
+                        lblPrimerApellido.Text = "Primer Apellido: " + userInfo["PrimerApellido"].ToString();
+                        lblSegundoApellido.Text = "Segundo Apellido: " + userInfo["SegundoApellido"].ToString();
+                    }
+                    else
+                    {
+                        lblCedula.Text = "Cédula: No encontrado";
+                        lblNombre.Text = "Nombre: No encontrado";
+                        lblPrimerApellido.Text = "Primer Apellido: No encontrado";
+                        lblSegundoApellido.Text = "Segundo Apellido: No encontrado";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lblEliminar.Text = "Error al buscar usuario: " + ex.Message;
+                }
+            }
+        }
+
+
+
+
+
+
+        private DataRow GetUserInfoByIxCUUsuario(string ixCUUsuario)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["op_SPC"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(
+                    @"SELECT 
+                vs.IdCedula,
+                vs.Nombre,
+                vs.Apellido1 AS PrimerApellido,
+                vs.Apellido2 AS SegundoApellido
+              FROM 
+                CUUsuario cu
+              INNER JOIN 
+                VSesion vs ON cu.Cedula = vs.IdCedula
+              WHERE 
+                cu.IxCUUsuario = @IxCUUsuario", conn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@IxCUUsuario", ixCUUsuario);
+
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            if (dt.Rows.Count > 0)
+                            {
+                                return dt.Rows[0];
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ApplicationException("Error al ejecutar la consulta SQL", ex);
+                    }
+                }
+            }
+            return null;
+        }
+
     }
 }
 

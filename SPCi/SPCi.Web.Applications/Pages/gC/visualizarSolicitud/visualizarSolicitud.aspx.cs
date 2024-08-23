@@ -43,7 +43,11 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
             string connStr = ConfigurationManager.ConnectionStrings["op_SPC"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connStr))
             {
+
+
                 string query = "AT_SeleccionarDatosPorIdSolicitud";
+
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
