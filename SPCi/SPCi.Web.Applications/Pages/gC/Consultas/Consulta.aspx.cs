@@ -75,16 +75,25 @@ namespace SPCi.Web.Applications.Pages.gC
             }
         }
 
-        protected void RadGrid1_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnSeleccionar_Click(object sender, EventArgs e)
         {
-            // Obtiene el item seleccionado
-            GridDataItem item = RadGrid1.SelectedItems[0] as GridDataItem;
+            if (RadGrid1.SelectedItems.Count > 0)
+            {
+                // Obtén la fila seleccionada
+                GridDataItem item = RadGrid1.SelectedItems[0] as GridDataItem;
 
-            // Obtiene el IdSolicitud desde el DataKeyValues usando DataKeyNames
-            string idSolicitud = item.GetDataKeyValue("IdSolicitud").ToString();
+                // Obtén el IdSolicitud desde el DataKeyValues usando DataKeyNames
+                string idSolicitud = item.GetDataKeyValue("IdSolicitud").ToString();
 
-            // Redirige a la página con el IdSolicitud como parámetro
-            Response.Redirect("~/Pages/gC/visualizarSolicitud/visualizarSolicitud.aspx?IxClienteUsuario=" + idSolicitud);
+                // Redirige a la página con el IdSolicitud como parámetro
+                Response.Redirect("~/Pages/gC/visualizarSolicitud/visualizarSolicitud.aspx?IxClienteUsuario=" + idSolicitud);
+            }
+            else
+            {
+                // Maneja el caso donde no se ha seleccionado ninguna fila
+                // Podrías mostrar un mensaje al usuario, por ejemplo
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Por favor, seleccione una fila.');", true);
+            }
         }
 
     }

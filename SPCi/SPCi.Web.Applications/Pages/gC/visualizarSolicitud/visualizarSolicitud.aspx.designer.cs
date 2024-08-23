@@ -87,6 +87,51 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
         protected global::Telerik.Web.UI.RadLabel RadLabelIDRepresentanteLegal;
 
         /// <summary>
+        /// Control btnVisualizar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVisualizar;
+
+        /// <summary>
+        /// Control pnlPopup.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlPopup;
+
+        /// <summary>
+        /// Control lblFileUrl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFileUrl;
+
+        /// <summary>
+        /// Control lnkFile.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkFile;
+
+        /// <summary>
+        /// Control btnCerrarPopup.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCerrarPopup;
+
+        /// <summary>
         /// Control btnAprobar.
         /// </summary>
         /// <remarks>

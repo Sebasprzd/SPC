@@ -104,13 +104,6 @@
     <Compile Include="Pages\gC\Pantalla1\Pantalla1.aspx.designer.cs">
       <DependentUpon>Pantalla1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\gC\Solicitudes\Solicitudes.aspx.cs">
-      <DependentUpon>Solicitudes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\gC\Solicitudes\Solicitudes.aspx.designer.cs">
-      <DependentUpon>Solicitudes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\gC\Consultas\Consulta.aspx.cs">
       <DependentUpon>Consulta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -124,6 +117,13 @@
     </Compile>
     <Compile Include="Pages\gC\Autorizados\Autorizados.aspx.designer.cs">
       <DependentUpon>Autorizados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\gC\Solicitudes\Solicitudes.aspx.cs">
+      <DependentUpon>Solicitudes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\gC\Solicitudes\Solicitudes.aspx.designer.cs">
+      <DependentUpon>Solicitudes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\gC\Usuario\Usuario.aspx.cs">
       <DependentUpon>Usuario.aspx</DependentUpon>
@@ -206,9 +206,9 @@
   <ItemGroup>
     <Content Include="Images\logo\logo.png" />
     <Content Include="Pages\gC\Pantalla1\Pantalla1.aspx" />
-    <Content Include="Pages\gC\Solicitudes\Solicitudes.aspx" />
     <Content Include="Pages\gC\Consultas\Consulta.aspx" />
     <Content Include="Pages\gC\Autorizados\Autorizados.aspx" />
+    <Content Include="Pages\gC\Solicitudes\Solicitudes.aspx" />
     <Content Include="Pages\gC\Usuario\Usuario.aspx" />
     <Content Include="Pages\gC\Solicitudes\styles\style.css" />
     <Content Include="Pages\gC\visualizarSolicitud\visualizarSolicitud.aspx" />
