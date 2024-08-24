@@ -92,7 +92,7 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
             {
                 // Recuperar el idSolicitud desde ViewState
                 idSolicitud = (int)ViewState["idSolicitud"];
-             
+
 
                 // Obtener la cadena de conexión desde el archivo de configuración
                 string connStr = ConfigurationManager.ConnectionStrings["op_SPC"].ConnectionString;
@@ -137,7 +137,7 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
                                                 string nombreArchivo = Path.GetFileName(archivo);
 
                                                 // Crear la ruta file:// para abrir en una nueva pestaña
-                                                string urlArchivo = "C:\\PDFs\\" + archivo.Replace("\\", "/");
+                                                string urlArchivo = "file://" + archivo.Replace("\\", "/");
 
                                                 HyperLink lnkArchivo = new HyperLink
                                                 {
@@ -199,14 +199,13 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
         }
 
 
-        //  VALIDAR QUE ESTÉN EN 2 
 
         protected void btnAprobar_Click(object sender, EventArgs e)
         {
             if (ViewState["idSolicitud"] != null)
             {
                 idSolicitud = (int)ViewState["idSolicitud"];
-                ActualizarEstadoCliente(idSolicitud, 2); // 2 es el código para "Aprobar"
+                ActualizarEstadoCliente(idSolicitud, 2); // 2 "Aprobar"
             }
             else
             {
@@ -219,7 +218,7 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
             if (ViewState["idSolicitud"] != null)
             {
                 idSolicitud = (int)ViewState["idSolicitud"];
-                ActualizarEstadoCliente(idSolicitud, 3); // 3 es el código para "Rechazar"
+                ActualizarEstadoCliente(idSolicitud, 3); // 3 "Rechazar"
             }
             else
             {
@@ -261,6 +260,10 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
             }
         }
 
+        
+        //
+
+
 
         private void RegistrarEnBitacora(int nuevoEstado)
         {
@@ -284,7 +287,7 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
                     cmd.Parameters.AddWithValue("@IxClienteUsuario", idSolicitud); // Usa idSolicitud que ya es un entero
                     cmd.Parameters.AddWithValue("@IxCUEstado", nuevoEstado);
                     cmd.Parameters.AddWithValue("@IxSession", ixSesion);
-                    Response.Write("Entramossss SOLISOLI: " + idSolicitud + "IxCUEstado" + nuevoEstado + "IxSession " + ixSesion ); // Depuración
+                    Response.Write("Entramossss SOLISOLI: " + idSolicitud + "IxCUEstado" + nuevoEstado + "IxSession " + ixSesion); // Depuración
                     try
                     {
                         conn.Open();
