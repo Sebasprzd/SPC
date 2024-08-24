@@ -28,7 +28,7 @@
             <div style="width: 70%; margin: 0 auto; padding-top: 2%;" >
                 <div>
                     <asp:Label style="margin-top: 10%; padding-right: 21%;" runat="server" Text="ID Cliente:" />
-                    <telerik:RadLabel style="width: 200px; border: 1px solid #ccc;" ID="RadLabelIDCliente" runat="server"></telerik:RadLabel><br /> 
+                    <telerik:RadLabel style="width: 200px; border: 1px solid LightBlue;" ID="RadLabelIDCliente" runat="server"></telerik:RadLabel><br /> 
                 </div>
                 <br />
                 <div>

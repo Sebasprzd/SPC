@@ -41,8 +41,6 @@ namespace SPCi.Web.Applications.Pages.gC
                             DataTable dt = new DataTable();
                             sda.Fill(dt);
 
-                    
-
                             // Agregar columna para el estado de la solicitud
                             dt.Columns.Add("Solicitud", typeof(string));
 
@@ -90,8 +88,7 @@ namespace SPCi.Web.Applications.Pages.gC
             }
             else
             {
-                // Maneja el caso donde no se ha seleccionado ninguna fila
-                // Podrías mostrar un mensaje al usuario, por ejemplo
+                // Maneja donde no se ha seleccionado ninguna fila
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Por favor, seleccione una fila.');", true);
             }
         }

@@ -73,7 +73,8 @@ namespace SPCi.Web.Applications.Pages.gC.Solicitudes
                 fileUploadPDF.Visible = true;
                 btnSubirPDF.Visible = true;
 
-                MostrarMensaje("Los datos se han guardado correctamente.");
+                MostrarMensaje("Los datos se han guardado correctamente.<br />Proceda a subir los archivos PDF.");
+
             }
             catch (Exception ex)
             {

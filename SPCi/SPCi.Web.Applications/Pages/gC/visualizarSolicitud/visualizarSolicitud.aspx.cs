@@ -23,7 +23,7 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
                 {
                     if (int.TryParse(IdSolicitudStr, out idSolicitud))
                     {
-                        // Guarda idSolicitud en ViewState
+                        // Guarda idSolicitud en ViewStateS
                         ViewState["idSolicitud"] = idSolicitud;
                         BindLabels(idSolicitud);
                     }
@@ -84,7 +84,6 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
             }
         }
 
-        //Y LEER LOS PDFS
         protected void btnVisualizar_Click(object sender, EventArgs e)
         {
             // Verificar si el idSolicitud está almacenado en ViewState
@@ -143,9 +142,9 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
                                                 {
                                                     Text = nombreArchivo,
                                                     NavigateUrl = urlArchivo,
-                                                    Target = "urlArchivo" // Abrir en una nueva pestaña
+                                                    Target = "blank" // Abrir en una nueva pestaña
                                                 };
-                                                Response.Write("Valorrrrrr : " + urlArchivo);
+                                               
                                                 pnlPopup.Controls.Add(lnkArchivo);
                                                 pnlPopup.Controls.Add(new Literal { Text = "<br />" });
                                             }
@@ -191,7 +190,6 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
 
 
 
-
         protected void btnCerrarPopup_Click(object sender, EventArgs e)
         {
             // Ocultar el panel popup
@@ -219,6 +217,7 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
             {
                 idSolicitud = (int)ViewState["idSolicitud"];
                 ActualizarEstadoCliente(idSolicitud, 3); // 3 "Rechazar"
+                
             }
             else
             {
@@ -234,7 +233,6 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
                 using (SqlCommand cmd = new SqlCommand("AT_ModificarEstadoClienteUsuario", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    Response.Write("Valorrrrrr : " + num); // Depuración
                     cmd.Parameters.AddWithValue("@IxClienteUsuario", num); // Usa idSolicitud
                     cmd.Parameters.AddWithValue("@NuevoEstado", nuevoEstado);
 
@@ -246,7 +244,7 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
                         // Registrar la acción en la bitácora
                         RegistrarEnBitacora(nuevoEstado);
 
-                        Response.Write("Estado actualizado exitosamente.");
+                        Response.Write("<script>alert('Estado actualizado exitosamente');</script>");
                     }
                     catch (SqlException sqlEx)
                     {
@@ -259,9 +257,6 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
                 }
             }
         }
-
-        
-        //
 
 
 
@@ -287,7 +282,7 @@ namespace SPCi.Web.Applications.Pages.gC.visualizarSolicitud
                     cmd.Parameters.AddWithValue("@IxClienteUsuario", idSolicitud); // Usa idSolicitud que ya es un entero
                     cmd.Parameters.AddWithValue("@IxCUEstado", nuevoEstado);
                     cmd.Parameters.AddWithValue("@IxSession", ixSesion);
-                    Response.Write("Entramossss SOLISOLI: " + idSolicitud + "IxCUEstado" + nuevoEstado + "IxSession " + ixSesion); // Depuración
+                   
                     try
                     {
                         conn.Open();
